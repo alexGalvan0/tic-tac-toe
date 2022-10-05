@@ -1,3 +1,12 @@
-.col {
+.row {
     height:100vh;
+
+}
+.col {
+    display: grid;
+    grid-template-columns: auto auto auto;
+}
+.btn {
+    height: 15rem;
+    width: 10rem;
 }

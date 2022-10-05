@@ -53,7 +53,7 @@ const row = createElements({
 })
 
 const col = createElements({
-    classes: ['col-4', 'd-flex', 'justify-content-center'],
+    classes: ['col','pt-5'],
     parent: row
 })
 
@@ -99,9 +99,17 @@ const winConditions = [
     [6,7,8],
     [2,5,8]
 ];
+let xPositions = [];
+let oPositions = [];
 function checkWinCondition() {
     //check win condiition
-    
-        
+    board.forEach((item,i) => {
+        if(item == 'X'){
+            xPositions.push(i)
+        }else if(item == 'O'){
+            oPositions.push(i)
+        }
+    })
+    console.log(xPositions,oPositions)
 }
 
