@@ -55,3 +55,31 @@ for (let i=0; i<=8; i++){
 }
 
 // Functionality
+// global states
+let playerTurn = 'X'; 
+let winCondition = false;
+let gameActive = false;
+let winnder = '';
+let draw = false;
+
+
+
+
+
+//
+
+function init(){
+    ///render page
+    return
+}
+
+function updatePlayerTurn(){
+    // toggles between x and o
+    return
+}
+
+function checkWinCondition(){
+    //check win condiition
+    return
+}
+
