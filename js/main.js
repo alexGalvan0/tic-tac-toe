@@ -1,10 +1,10 @@
 const root = document.getElementById('root');
 function createElements({
-    type='div',
-    text='' ,
+    type = 'div',
+    text = '',
     parent,
     classes,
-    id='',
+    id = '',
     alt,
     src,
     setAttribute
@@ -12,7 +12,7 @@ function createElements({
 } = {}) {
     let element = document.createElement(type)
 
-    if(classes == undefined){
+    if (classes == undefined) {
         ''
     } else {
         classes.forEach(classAdded => {
@@ -23,62 +23,67 @@ function createElements({
     element.id = id
     element.alt = alt
     element.src = src
-    element.setAttribute = setAttribute  
+    element.setAttribute = setAttribute
     parent.appendChild(element)
     return element
 }
 
 const container = createElements({
-    classes:['container-flow'],
-    parent:root
+    classes: ['container-flow'],
+    parent: root
 })
 
 const row = createElements({
-    classes:['row','text-center'],
-    parent:container
+    classes: ['row', 'text-center'],
+    parent: container
 })
 
 const col = createElements({
-    classes : ['col-4','d-flex','justify-content-center'],
-    parent:row
+    classes: ['col-4', 'd-flex', 'justify-content-center'],
+    parent: row
 })
 
 
-for (let i=0; i<=8; i++){
+for (let i = 0; i <= 8; i++) {
     createElements({
-        type:'button',
-        id:`btn${i}`,
-        parent:col,
-        text:'tic tac toe',
-        classes:['bg-primary']
+        type: 'button',
+        id: `btn${i}`,
+        parent: col,
+        text: 'tic tac toe',
+        classes: ['bg-primary']
     })
 }
 
 // Functionality
 // global states
-let playerTurn = 'X'; 
+let playerTurn = 'X';
 let winCondition = false;
 let gameActive = false;
 let winnder = '';
 let draw = false;
+
+let board = [
+    '', '', '',
+    '', '', '',
+    '','', ''
+];
 
 
 
 
 
 //
-
-function init(){
+function init() {
     ///render page
     return
 }
 
-function updatePlayerTurn(){
+function updatePlayerTurn() {
     // toggles between x and o
     return
 }
 
-function checkWinCondition(){
+function checkWinCondition() {
     //check win condiition
     return
 }
