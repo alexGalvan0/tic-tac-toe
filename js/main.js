@@ -1,16 +1,5 @@
 let playerTurn = 'X'
 
-const winConditions = [
-    ['0','1','2'],
-    ['0','3','6'],
-    ['0','4','8'],
-    ['3','4','5'],
-    ['1','4','7'],
-    ['2','4','6'],
-    ['6','7','8'],
-    ['2','5','8']
-];
-
 let active = true;
 let gameActive = false;
 let winner = '';
@@ -85,8 +74,10 @@ for (let i = 0; i <= 8; i++) {
         }
         tile.disabled = true
         board[i] = tile.innerHTML
-        console.log(board)
-    })
+        checkWinCondition();
+        
+    }
+    )
 }
 
 // Functionality
@@ -98,13 +89,19 @@ function init() {
     return
 }
 
-function updatePlayerTurn() {
-    // toggles between x and o
-    return
-}
-
+const winConditions = [
+    [0,1,2],
+    [0,3,6],
+    [0,4,8],
+    [3,4,5],
+    [1,4,7],
+    [2,4,6],
+    [6,7,8],
+    [2,5,8]
+];
 function checkWinCondition() {
     //check win condiition
-    return
+    
+        
 }
 
