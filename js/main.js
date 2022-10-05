@@ -105,9 +105,18 @@ function checkWinCondition() {
     //check win condiition
     board.forEach((item,i) => {
         if(item == 'X'){
-            xPositions.push(i)
+            if(xPositions.includes(i)){
+                return
+            } else {
+                xPositions.push(i)
+        }
         }else if(item == 'O'){
-            oPositions.push(i)
+            if(oPositions.includes(i)){
+                return
+            } else {
+                oPositions.push(i)
+        }
+
         }
     })
     console.log(xPositions,oPositions)
