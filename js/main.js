@@ -1,3 +1,19 @@
+let playerTurn = 'X'
+
+
+
+let active = true;
+let gameActive = false;
+let winner = '';
+let draw = false;
+
+let board = [
+    '', '', '',
+    '', '', '',
+    '','', ''
+];
+
+
 const root = document.getElementById('root');
 function createElements({
     type = 'div',
@@ -29,7 +45,7 @@ function createElements({
 }
 
 const container = createElements({
-    classes: ['container-flow'],
+    classes: ['container'],
     parent: root
 })
 
@@ -43,33 +59,28 @@ const col = createElements({
     parent: row
 })
 
-
 for (let i = 0; i <= 8; i++) {
-    createElements({
+   let tile =  createElements({
         type: 'button',
-        id: `btn${i}`,
+        id: i,
         parent: col,
-        text: 'tic tac toe',
-        classes: ['bg-primary']
+        text: '',
+        classes: ['btn','btn-primary','tile']
+    })
+    tile.addEventListener('click',() =>{
+        tile.innerHTML = playerTurn;
+        if(playerTurn == "X"){
+            playerTurn='O'
+        } else {
+            playerTurn ="X"
+        }
+        tile.disabled = true
+        board[i] = tile.innerHTML
+        console.log(board)
     })
 }
 
 // Functionality
-// global states
-let playerTurn = 'X';
-let winCondition = false;
-let gameActive = false;
-let winnder = '';
-let draw = false;
-
-let board = [
-    '', '', '',
-    '', '', '',
-    '','', ''
-];
-
-
-
 
 
 //
