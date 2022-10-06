@@ -16,7 +16,7 @@ let model = {
         '','', ''
     ],
     playerTurn: 'X',
-    tie: 'It is a Tie',
+    
     xPositions : [],
     oPositions : []
 }
@@ -43,7 +43,7 @@ let view ={
         })
         let currentPlayer = view.createElements({
             type:'h3',
-            text:`It is player ${model.playerTurn}'s turn`,
+            text:model.playerTurn,
             parent:app
         })
 
@@ -65,7 +65,7 @@ let view ={
                 tile.disabled = true
                 model.board[i] = tile.innerHTML
                 this.checkWinCondition()
-                currentPlayer.innerHTML =`it is player ${model.playerTurn}'s turn!`
+                currentPlayer.innerHTML = model.playerTurn
 
             })
         }
@@ -139,7 +139,7 @@ let view ={
      
                
             } else if(! model.board.includes('')){
-                model.playerTurn = 'Its a tie!'
+                model.playerTurn = 'It is a tie'
                 setTimeout(controller.reset,2000)
             }
         })
