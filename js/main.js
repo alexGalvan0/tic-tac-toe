@@ -68,6 +68,13 @@ let view ={
             text:`It is player ${model.playerTurn}'s turn`,
             parent:app
         })
+
+        let resetButton = createElements({
+            type:'button',
+            text:'RESET',
+            parent:app
+        })
+        resetButton.addEventListener('click', controller.reset)
     },
 
     checkWinCondition: function() {
@@ -135,6 +142,7 @@ let controller ={
         model.xPositions = [];
         model.oPositions = [];
         model.playerTurn = 'X'
+        controller.init()
     }
 
 
