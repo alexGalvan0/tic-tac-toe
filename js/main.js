@@ -56,6 +56,9 @@ const col = createElements({
     classes: ['col','pt-5'],
     parent: row
 })
+let player = createElements({type:'h3',
+                text:`Player X's Turn`,
+                parent:row})
 
 for (let i = 0; i <= 8; i++) {
    let tile =  createElements({
@@ -75,6 +78,9 @@ for (let i = 0; i <= 8; i++) {
         tile.disabled = true
         board[i] = tile.innerHTML
         checkWinCondition();
+        checkTie()
+        player.textContent = `Player ${playerTurn}'s Turn`
+        
         
     }
     )
@@ -129,8 +135,13 @@ function checkWinCondition() {
             alert('y wins')
         }
     })
-
-    
 }
+
+function checkTie() {
+    if(!board.includes('')){
+        alert('it\'s a tie')
+    }
+}
+
 
 
