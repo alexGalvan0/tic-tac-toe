@@ -59,6 +59,11 @@ const col = createElements({
 let player = createElements({type:'h3',
                 text:`Player X's Turn`,
                 parent:row})
+let resetBtn = createElements({
+    type:'button',
+    text:'RESET',
+    parent:root
+})
 
 for (let i = 0; i <= 8; i++) {
    let tile =  createElements({
@@ -79,6 +84,7 @@ for (let i = 0; i <= 8; i++) {
         board[i] = tile.innerHTML
         checkWinCondition();
         checkTie()
+        player
         player.textContent = `Player ${playerTurn}'s Turn`
         
         
@@ -127,6 +133,7 @@ function checkWinCondition() {
     })
     let sortedX = xPositions.sort().toString()
     let sortedO = oPositions.sort().toString();
+    console.log(sortedX,sortedO)
 
     winConditions.forEach((winCondition) => {
         if(sortedX.includes(winCondition)){
