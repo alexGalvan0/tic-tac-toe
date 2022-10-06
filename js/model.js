@@ -19,5 +19,3 @@ export let model = {
     xPositions : [],
     oPositions : []
 }
-
-//visible data
