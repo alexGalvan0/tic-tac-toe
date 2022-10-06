@@ -16,18 +16,19 @@ let model = {
         '','', ''
     ],
     playerTurn: 'X',
+    tie: 'It is a Tie',
     xPositions : [],
     oPositions : []
 }
 
-//visible data
+
 let view ={
     render: function(){
         const body = document.body;
         body.classList.add('text-center')
 
         let container = view.createElements({
-            classes:['container','d-flex','justify-content-center'],
+            classes:['container','d-flex','justify-content-center','mt-5'],
             parent:app
         })
 
@@ -40,6 +41,11 @@ let view ={
             classes:['col'],
             parent: row
         })
+        let currentPlayer = view.createElements({
+            type:'h3',
+            text:`It is player ${model.playerTurn}'s turn`,
+            parent:app
+        })
 
         for (let i=0; i<9; i++){
            let tile = view.createElements({
@@ -48,6 +54,7 @@ let view ={
                 parent:col,
                 classes:['btns']
             })
+            
             tile.addEventListener('click',() => {
                 tile.innerHTML = model.playerTurn;
                 if(model.playerTurn == "X"){
@@ -58,18 +65,14 @@ let view ={
                 tile.disabled = true
                 model.board[i] = tile.innerHTML
                 this.checkWinCondition()
+                currentPlayer.innerHTML =`it is player ${model.playerTurn}'s turn!`
 
             })
         }
-        let currentPlayer = view.createElements({
-            type:'h3',
-            text:`It is player ${model.playerTurn}'s turn`,
-            parent:app
-        })
 
         let resetButton = view.createElements({
             type:'button',
-            classes:['text-center','border'],
+            classes:['text-center','border','btn','btn-primary'],
             text:'RESET',
             parent:app
         })
@@ -131,10 +134,13 @@ let view ={
                 setTimeout(controller.reset,2000)
 
             } else if( sortedO.includes(winCondition)){
-                alert('y wins')
+                alert('O wins')
                 setTimeout(controller.reset,2000)
      
                
+            } else if(! model.board.includes('')){
+                model.playerTurn = 'Its a tie!'
+                setTimeout(controller.reset,2000)
             }
         })
     
@@ -172,8 +178,16 @@ let controller ={
         model.oPositions = [];
         model.playerTurn = 'X'
         controller.init()
-    }
+    },
+    
+    updatePlayer : function(){
+      if(model.playerTurn == 'X'){
+        model.playerTurn = 'O'
+      } else if  ( model.playerTurn == 'O'){
+        model.playerTurn = 'X'
+      }
 
+    }
 
 }
 controller.init()
