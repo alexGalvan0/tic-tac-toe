@@ -102,11 +102,11 @@ let view ={
             if(sortedX.includes(winCondition)){
                 alert('x wins')
                 controller.reset()
-                controller.init()
+
             } else if( sortedO.includes(winCondition)){
                 alert('y wins')
                 controller.reset()
-                controller.init()
+     
                
             }
         })
