@@ -43,7 +43,7 @@ let view ={
         })
         let currentPlayer = view.createElements({
             type:'h3',
-            text:model.playerTurn,
+            text:`its player ${model.playerTurn}'s turn`,
             parent:app
         })
 
@@ -65,7 +65,7 @@ let view ={
                 tile.disabled = true
                 model.board[i] = tile.innerHTML
                 this.checkWinCondition()
-                currentPlayer.innerHTML = model.playerTurn
+                currentPlayer.innerHTML = `its player ${model.playerTurn}'s turn` // add conditional
 
             })
         }
