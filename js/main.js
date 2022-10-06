@@ -119,6 +119,18 @@ function checkWinCondition() {
 
         }
     })
-    console.log(xPositions,oPositions)
+    let sortedX = xPositions.sort().toString()
+    let sortedO = oPositions.sort().toString();
+
+    winConditions.forEach((winCondition) => {
+        if(sortedX.includes(winCondition)){
+            alert('x wins')
+        } else if( sortedO.includes(winCondition)){
+            alert('y wins')
+        }
+    })
+
+    
 }
+
 
