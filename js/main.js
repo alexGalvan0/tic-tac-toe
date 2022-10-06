@@ -1,35 +1,15 @@
 import { createElements } from './function.js';
+import { model } from './model.js';
 
-
-//data
-let model = {
-    winConditions : [
-        [0,1,2],
-        [0,3,6],
-        [0,4,8],
-        [3,4,5],
-        [1,4,7],
-        [2,4,6],
-        [6,7,8],
-        [2,5,8]
-    ],
-    
-   board : [
-        '', '', '',
-        '', '', '',
-        '','', ''
-    ],
-    playerTurn: 'X',
-    xPositions : [],
-    oPositions : []
-}
 
 //visible data
 let view ={
     render: function(){
+        const body = document.body;
+        body.classList.add('text-center')
 
         let container = createElements({
-            classes:['container'],
+            classes:['container','d-flex','justify-content-center'],
             parent:app
         })
 
@@ -71,6 +51,7 @@ let view ={
 
         let resetButton = createElements({
             type:'button',
+            classes:['text-center','border'],
             text:'RESET',
             parent:app
         })
@@ -101,11 +82,11 @@ let view ={
         model.winConditions.forEach((winCondition) => {
             if(sortedX.includes(winCondition)){
                 alert('x wins')
-                controller.reset()
+                setTimeout(controller.reset,2000)
 
             } else if( sortedO.includes(winCondition)){
                 alert('y wins')
-                controller.reset()
+                setTimeout(controller.reset,2000)
      
                
             }
@@ -126,7 +107,9 @@ let controller ={
 
     reset: function(){
         const body = document.body;
+        body.classList.add('text-center')
         const app = document.getElementById('app')
+        body.classList.add('text-center')
 
         app.remove()
         createElements({
