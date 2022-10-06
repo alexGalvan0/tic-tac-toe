@@ -1,8 +1,6 @@
 import { createElements } from './function.js';
 
 
-const app = document.getElementById('app')
-
 //data
 let model = {
     winConditions : [
@@ -21,14 +19,13 @@ let model = {
         '', '', '',
         '','', ''
     ],
-    playerTurn: 'X'
-    
-   
+    playerTurn: 'X',
+    xPositions : [],
+    oPositions : []
 }
 
 //visible data
 let view ={
-
     render: function(){
 
         let container = createElements({
@@ -47,11 +44,23 @@ let view ={
         })
 
         for (let i=0; i<9; i++){
-           let tiles = createElements({
+           let tile = createElements({
                 type:'button',
                 id:i,
                 parent:col,
                 classes:['btns']
+            })
+            tile.addEventListener('click',() => {
+                tile.innerHTML = model.playerTurn;
+                if(model.playerTurn == "X"){
+                    model.playerTurn = 'O'
+                } else {
+                    model.playerTurn ="X"
+                }
+                tile.disabled = true
+                model.board[i] = tile.innerHTML
+                this.checkWinCondition()
+
             })
         }
         let currentPlayer = createElements({
@@ -61,15 +70,75 @@ let view ={
         })
     },
 
+    checkWinCondition: function() {
+        //check win condiition
+        model.board.forEach((item,i) => {
+            if(item == 'X'){
+                if(model.xPositions.includes(i)){
+                    return
+                } else {
+                    model.xPositions.push(i)
+            }
+            }else if(item == 'O'){
+                if(model.oPositions.includes(i)){
+                    return
+                } else {
+                    model.oPositions.push(i)
+            }
+    
+            }
+        })
+        let sortedX = model.xPositions.sort().toString()
+        let sortedO = model.oPositions.sort().toString();
+    
+        model.winConditions.forEach((winCondition) => {
+            if(sortedX.includes(winCondition)){
+                alert('x wins')
+                controller.reset()
+                controller.init()
+            } else if( sortedO.includes(winCondition)){
+                alert('y wins')
+                controller.reset()
+                controller.init()
+               
+            }
+        })
+    
+        
+    }
+    
+
 }
 
 //interaction
 let controller ={
-
     init: function(){
+
         view.render()
     },
 
-}
+    reset: function(){
+        const body = document.body;
+        const app = document.getElementById('app')
 
+        app.remove()
+        createElements({
+            id:'app',
+            parent: body
+        })
+
+       model.board = [
+            '', '', '',
+            '', '', '',
+            '','', ''
+        ]
+        model.xPositions = [];
+        model.oPositions = [];
+        model.playerTurn = 'X'
+    }
+
+
+}
 controller.init()
+
+
