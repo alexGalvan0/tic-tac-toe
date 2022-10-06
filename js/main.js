@@ -31,6 +31,11 @@ let view ={
             classes:['container','d-flex','justify-content-center','mt-5'],
             parent:app
         })
+        let title = this.createElements({
+            type:'h1',
+            text:'TIC-TAC-TOE',
+            parent:app
+        })
 
         let row = view.createElements({
             classes:['row'],

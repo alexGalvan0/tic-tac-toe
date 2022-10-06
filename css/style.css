@@ -10,21 +10,29 @@
 
 body{
     height: 100vh;
-    background-color: #FBFBFF;
+    background-image: url('../img/spectrum-gradient.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .btns{
     width: 10rem;
     height: 10rem;
-    border :5px solid #FF331F;
+    border :5px solid #1e00ff;
     font-size: 4rem;
     font-weight: bolder;
-    background-color: #657ED4;
+    background-color: #ffffff;
 }
 .btns:disabled{
-    background-color: #0D0106;
+    background-color: yellow;
     color: rgb(255, 0, 0);
 }
 .btns:hover{
-    background-color:#3626A7
+    background-color:#40349abb;
+
+}
+h3{
+    color: white;
+    font-size: 3rem;
+    
 }
