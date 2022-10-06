@@ -10,4 +10,21 @@
 
 body{
     height: 100vh;
+    background-color: rgb(128, 180, 249);
+}
+
+.btns{
+    width: 10rem;
+    height: 10rem;
+    border :5px solid blue;
+    font-size: 4rem;
+    font-weight: bolder;
+    background-color: white;
+}
+.btns:disabled{
+    background-color: yellow;
+    color: rgb(255, 0, 0);
+}
+.btns:hover{
+    background-color: rgba(111, 111, 111,0.02);
 }

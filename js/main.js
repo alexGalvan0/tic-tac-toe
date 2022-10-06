@@ -130,11 +130,11 @@ let view ={
     
         model.winConditions.forEach((winCondition) => {
             if(sortedX.includes(winCondition)){
-                alert('x wins')
+                model.playerTurn = 'X Wins'
                 setTimeout(controller.reset,2000)
 
             } else if( sortedO.includes(winCondition)){
-                alert('O wins')
+                model.playerTurn = 'O wins'
                 setTimeout(controller.reset,2000)
      
                
