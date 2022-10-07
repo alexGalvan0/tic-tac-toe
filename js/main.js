@@ -16,8 +16,8 @@ let model = {
         '', '', ''
     ],
     playerTurn: 'X',
-    xscore:0,
-    oscore:0,
+    xscore:localStorage.getItem('xScore'),
+    oscore:localStorage.getItem('oscore'),
 
     xPositions: [],
     oPositions: []
