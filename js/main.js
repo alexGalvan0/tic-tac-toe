@@ -16,6 +16,8 @@ let model = {
         '', '', ''
     ],
     playerTurn: 'X',
+    xscore:0,
+    oscore:0,
 
     xPositions: [],
     oPositions: []
@@ -26,13 +28,33 @@ let view = {
         const body = document.body;
         body.classList.add('text-center')
 
+        let title = this.createElements({
+            type: 'h1',
+            text: 'TIC-TAC-TOE',
+            parent: app
+        })
+
         let container = view.createElements({
             classes: ['container', 'd-flex', 'justify-content-center', 'mt-5'],
             parent: app
         })
-        let title = this.createElements({
-            type: 'h1',
-            text: 'TIC-TAC-TOE',
+
+        let currentPlayer = view.createElements({
+            type: 'h3',
+            text: model.playerTurn,
+            parent: app
+        })
+
+
+        let scorex = this.createElements({
+            type: 'h5',
+            text: `X Score ${model.xscore}`,
+            parent: app
+        })
+
+        let scoreo = this.createElements({
+            type: 'h5',
+            text: `O Score ${model.oscore}`,
             parent: app
         })
 
@@ -44,11 +66,6 @@ let view = {
         let col = view.createElements({
             classes: ['col'],
             parent: row
-        })
-        let currentPlayer = view.createElements({
-            type: 'h3',
-            text: model.playerTurn,
-            parent: app
         })
 
         for (let i = 0; i < 9; i++) {
@@ -135,10 +152,13 @@ let view = {
         model.winConditions.forEach((winCondition) => {
             if (sortedX.includes(winCondition)) {
                 model.playerTurn = 'X Wins'
+                localStorage.setItem('xScore', model.xscore+=1)
                 setTimeout(controller.reset, 2000)
+
 
             } else if (sortedO.includes(winCondition)) {
                 model.playerTurn = 'O wins'
+                localStorage.setItem('oScore', model.oscore+=1)
                 setTimeout(controller.reset, 2000)
 
 

@@ -45,7 +45,7 @@ winConditions: [
 >             - col
 >                - 9 btns (game play)
 >                   - on click event check to see if any of the occupied spots match a whole winning condition.
-> - Methods
+> - **Methods**
 >   - Create elememts
 >       - Use an object inside 
 
