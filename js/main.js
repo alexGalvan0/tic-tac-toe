@@ -1,136 +1,196 @@
-let playerTurn = 'X'
+let model = {
+    winConditions: [
+        [0, 1, 2],
+        [0, 3, 6],
+        [0, 4, 8],
+        [3, 4, 5],
+        [1, 4, 7],
+        [2, 4, 6],
+        [6, 7, 8],
+        [2, 5, 8]
+    ],
 
-let active = true;
-let gameActive = false;
-let winner = '';
-let draw = false;
+    board: [
+        '', '', '',
+        '', '', '',
+        '', '', ''
+    ],
+    playerTurn: 'X',
 
-let board = [
-    '', '', '',
-    '', '', '',
-    '','', ''
-];
-
-
-const root = document.getElementById('root');
-function createElements({
-    type = 'div',
-    text = '',
-    parent,
-    classes,
-    id = '',
-    alt,
-    src,
-    setAttribute
-
-} = {}) {
-    let element = document.createElement(type)
-
-    if (classes == undefined) {
-        ''
-    } else {
-        classes.forEach(classAdded => {
-            element.classList.add(classAdded)
-        });
-    }
-    element.innerHTML = text;
-    element.id = id
-    element.alt = alt
-    element.src = src
-    element.setAttribute = setAttribute
-    parent.appendChild(element)
-    return element
+    xPositions: [],
+    oPositions: []
 }
 
-const container = createElements({
-    classes: ['container'],
-    parent: root
-})
+let view = {
+    render: function () {
+        const body = document.body;
+        body.classList.add('text-center')
 
-const row = createElements({
-    classes: ['row', 'text-center'],
-    parent: container
-})
+        let container = view.createElements({
+            classes: ['container', 'd-flex', 'justify-content-center', 'mt-5'],
+            parent: app
+        })
+        let title = this.createElements({
+            type: 'h1',
+            text: 'TIC-TAC-TOE',
+            parent: app
+        })
 
-const col = createElements({
-    classes: ['col','pt-5'],
-    parent: row
-})
+        let row = view.createElements({
+            classes: ['row'],
+            parent: container
+        })
 
-for (let i = 0; i <= 8; i++) {
-   let tile =  createElements({
-        type: 'button',
-        id: i,
-        parent: col,
-        text: '',
-        classes: ['btn','btn-primary','tile']
-    })
-    tile.addEventListener('click',() =>{
-        tile.innerHTML = playerTurn;
-        if(playerTurn == "X"){
-            playerTurn='O'
+        let col = view.createElements({
+            classes: ['col'],
+            parent: row
+        })
+        let currentPlayer = view.createElements({
+            type: 'h3',
+            text: model.playerTurn,
+            parent: app
+        })
+
+        for (let i = 0; i < 9; i++) {
+            let tile = view.createElements({
+                type: 'button',
+                id: i,
+                parent: col,
+                classes: ['btns']
+            })
+
+            tile.addEventListener('click', () => {
+                tile.innerHTML = model.playerTurn;
+                if (model.playerTurn == "X") {
+                    model.playerTurn = 'O'
+                } else {
+                    model.playerTurn = "X"
+                }
+                tile.disabled = true
+                model.board[i] = tile.innerHTML
+                this.checkWinCondition()
+                currentPlayer.innerHTML = model.playerTurn // add conditional
+
+            })
+        }
+
+        let resetButton = view.createElements({
+            type: 'button',
+            classes: ['text-center', 'border', 'btn', 'btn-primary'],
+            text: 'RESET',
+            parent: app
+        })
+        resetButton.addEventListener('click', controller.reset)
+    },
+    createElements: function ({
+        type = 'div',
+        text = '',
+        parent,
+        classes,
+        id = '',
+        alt,
+        src,
+        setAttribute
+
+    } = {}) {
+        let element = document.createElement(type)
+
+        if (classes == undefined) {
+            ''
         } else {
-            playerTurn ="X"
+            classes.forEach(classAdded => {
+                element.classList.add(classAdded)
+            });
         }
-        tile.disabled = true
-        board[i] = tile.innerHTML
-        checkWinCondition();
-        
+        element.innerHTML = text;
+        element.id = id
+        element.alt = alt
+        element.src = src
+        element.setAttribute = setAttribute
+        parent.appendChild(element)
+        return element
+    },
+
+    checkWinCondition: function () {
+        //check win condiition
+        model.board.forEach((item, i) => {
+            if (item == 'X') {
+                if (model.xPositions.includes(i)) {
+                    return
+                } else {
+                    model.xPositions.push(i)
+                }
+            } else if (item == 'O') {
+                if (model.oPositions.includes(i)) {
+                    return
+                } else {
+                    model.oPositions.push(i)
+                }
+
+            }
+        })
+        let sortedX = model.xPositions.sort().toString()
+        let sortedO = model.oPositions.sort().toString();
+
+        model.winConditions.forEach((winCondition) => {
+            if (sortedX.includes(winCondition)) {
+                model.playerTurn = 'X Wins'
+                setTimeout(controller.reset, 2000)
+
+            } else if (sortedO.includes(winCondition)) {
+                model.playerTurn = 'O wins'
+                setTimeout(controller.reset, 2000)
+
+
+            } else if (!model.board.includes('')) {
+                model.playerTurn = 'TIE!'
+                setTimeout(controller.reset, 2000)
+            }
+        })
+
+
     }
-    )
-}
-
-// Functionality
 
 
-//
-function init() {
-    ///render page
-    return
-}
-
-const winConditions = [
-    [0,1,2],
-    [0,3,6],
-    [0,4,8],
-    [3,4,5],
-    [1,4,7],
-    [2,4,6],
-    [6,7,8],
-    [2,5,8]
-];
-let xPositions = [];
-let oPositions = [];
-function checkWinCondition() {
-    //check win condiition
-    board.forEach((item,i) => {
-        if(item == 'X'){
-            if(xPositions.includes(i)){
-                return
-            } else {
-                xPositions.push(i)
-        }
-        }else if(item == 'O'){
-            if(oPositions.includes(i)){
-                return
-            } else {
-                oPositions.push(i)
-        }
-
-        }
-    })
-    let sortedX = xPositions.sort().toString()
-    let sortedO = oPositions.sort().toString();
-
-    winConditions.forEach((winCondition) => {
-        if(sortedX.includes(winCondition)){
-            alert('x wins')
-        } else if( sortedO.includes(winCondition)){
-            alert('y wins')
-        }
-    })
-
-    
 }
 
 
+let controller = {
+    init: function () {
+        view.render()
+    },
+
+    reset: function () {
+        const body = document.body;
+        body.classList.add('text-center')
+        const app = document.getElementById('app')
+        body.classList.add('text-center')
+
+        app.remove()
+        view.createElements({
+            id: 'app',
+            parent: body
+        })
+
+        model.board = [
+            '', '', '',
+            '', '', '',
+            '', '', ''
+        ]
+        model.xPositions = [];
+        model.oPositions = [];
+        model.playerTurn = 'X'
+        controller.init()
+    },
+
+    updatePlayer: function () {
+        if (model.playerTurn == 'X') {
+            model.playerTurn = 'O'
+        } else if (model.playerTurn == 'O') {
+            model.playerTurn = 'X'
+        }
+
+    }
+
+}
+controller.init();

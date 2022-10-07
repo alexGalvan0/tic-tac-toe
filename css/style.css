@@ -1,12 +1,38 @@
 .row {
-    height:100vh;
+    height:30rem;
+    width: 30rem;
 
 }
 .col {
     display: grid;
     grid-template-columns: auto auto auto;
 }
-.btn {
-    height: 15rem;
+
+body{
+    height: 100vh;
+    background-image: url('../img/spectrum-gradient.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.btns{
     width: 10rem;
+    height: 10rem;
+    border :5px solid #1e00ff;
+    font-size: 4rem;
+    font-weight: bolder;
+    background-color: #ffffff;
+}
+.btns:disabled{
+    background-color: yellow;
+    color: rgb(255, 0, 0);
+}
+.btns:hover{
+    background-color:#40349abb;
+
+}
+h3{
+    color: white;
+    font-size: 3rem;
+    
 }
