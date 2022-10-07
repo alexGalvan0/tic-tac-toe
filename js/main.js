@@ -223,6 +223,8 @@ let controller = {
     resetScore: function(){
         model.xscore = 0;
         model.oscore = 0;
+        localStorage.setItem('xScore', 0)
+        localStorage.setItem('oscore',0)
 
     },
 
