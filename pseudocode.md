@@ -33,6 +33,9 @@ winConditions: [
 ## Classes:
 > **MODEL**
 >   - Contains the state of the Board
+>   - constains x ocupied spots
+>   - contains y ocupied spots
+
 
 > **VIEW**
 >   - Contains the HTML Elements
@@ -41,6 +44,7 @@ winConditions: [
 >           - Row
 >             - col
 >                - 9 btns (game play)
+>                   - on click event check to see if any of the occupied spots match a whole winning condition.
 > - Methods
 >   - Create elememts
 >       - Use an object inside 
@@ -50,6 +54,13 @@ winConditions: [
 >   - Init
 >       - Renders page
 >   - Reset
->       -Brings state back to start
+>       -Brings state back to start.
+>       - Reset board to all strings,
+>       - clear position x and positiony
+>       - Init()
 >   - Update Player
 >       - Updates the player turn from x to o
+>           - if player turn = x, turn player turn to y
+
+
+### INIT()
