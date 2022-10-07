@@ -21,6 +21,9 @@ winConditions: [
         '', '', ''  <br>
         '', '', ''  <br>
     ]
+>   - Player Turn x or o
+>   - Positions obtained by x
+>   - Position obtained by o
 
 ## Questions:
 > How to track moves?
@@ -33,6 +36,20 @@ winConditions: [
 
 > **VIEW**
 >   - Contains the HTML Elements
+>   - Body
+>       - Container
+>           - Row
+>             - col
+>                - 9 btns (game play)
+> - Methods
+>   - Create elememts
+>       - Use an object inside 
 
 > **CONTROLLER**
->   - Contains the Methods
+> - Contains the Methods
+>   - Init
+>       - Renders page
+>   - Reset
+>       -Brings state back to start
+>   - Update Player
+>       - Updates the player turn from x to o
