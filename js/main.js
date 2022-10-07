@@ -86,7 +86,7 @@ let view = {
                 tile.disabled = true
                 model.board[i] = tile.innerHTML
                 this.checkWinCondition()
-                currentPlayer.innerHTML = model.playerTurn // add conditional
+                currentPlayer.innerHTML = model.playerTurn 
 
             })
         }
@@ -94,10 +94,18 @@ let view = {
         let resetButton = view.createElements({
             type: 'button',
             classes: ['text-center', 'border', 'btn', 'btn-primary'],
-            text: 'RESET',
+            text: 'RESET BOARD',
+            parent: app
+        })
+        let resetScore = view.createElements({
+            type: 'button',
+            classes: ['text-center', 'border', 'btn', 'btn-primary'],
+            text: 'RESET SCORE',
             parent: app
         })
         resetButton.addEventListener('click', controller.reset)
+        resetScore.addEventListener('click',controller.resetBoard)
+
     },
     createElements: function ({
         type = 'div',
@@ -209,6 +217,18 @@ let controller = {
         } else if (model.playerTurn == 'O') {
             model.playerTurn = 'X'
         }
+
+    },
+
+    resetScore: function(){
+        model.xscore = 0;
+        model.oscore = 0;
+
+    },
+
+    resetBoard: function(){
+        controller.resetScore()
+       controller.reset()
 
     }
 
