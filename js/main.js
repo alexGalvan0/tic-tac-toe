@@ -16,8 +16,8 @@ let model = {
         '', '', ''
     ],
     playerTurn: 'X',
-    xscore:localStorage.getItem('xScore'),
-    oscore:localStorage.getItem('oscore'),
+    xscore:parseInt(localStorage.getItem('xscore')),
+    oscore:parseInt(localStorage.getItem('oscore')),
 
     xPositions: [],
     oPositions: []
@@ -48,13 +48,13 @@ let view = {
 
         let scorex = this.createElements({
             type: 'h5',
-            text: `X Score ${model.xscore}`,
+            text: `X Score ${model.xscore ? model.xscore: 0}`,
             parent: app
         })
 
         let scoreo = this.createElements({
             type: 'h5',
-            text: `O Score ${model.oscore}`,
+            text: `O Score ${model.oscore ? model.oscore: 0 }`,
             parent: app
         })
 
@@ -160,13 +160,13 @@ let view = {
         model.winConditions.forEach((winCondition) => {
             if (sortedX.includes(winCondition)) {
                 model.playerTurn = 'X Wins'
-                localStorage.setItem('xScore', model.xscore+=1)
+                localStorage.setItem('xscore', model.xscore+=1)
                 setTimeout(controller.reset, 2000)
 
 
             } else if (sortedO.includes(winCondition)) {
                 model.playerTurn = 'O wins'
-                localStorage.setItem('oScore', model.oscore+=1)
+                localStorage.setItem('oscore', model.oscore+=1)
                 setTimeout(controller.reset, 2000)
 
 
@@ -223,7 +223,7 @@ let controller = {
     resetScore: function(){
         model.xscore = 0;
         model.oscore = 0;
-        localStorage.setItem('xScore', 0)
+        localStorage.setItem('xscore', 0)
         localStorage.setItem('oscore',0)
 
     },
